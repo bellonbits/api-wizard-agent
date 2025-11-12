@@ -158,28 +158,35 @@ export const CodeGenerator = ({ initialPrompt = "" }: CodeGeneratorProps) => {
       {/* Output Section */}
       {(generatedCode || isGenerating) && (
         <Card className="border-border bg-card overflow-hidden">
-          <div className="p-4 border-b border-border bg-muted/50 flex items-center justify-between">
-            <h3 className="font-semibold text-foreground">Generated Code</h3>
+          <div className="p-4 border-b border-border bg-muted/30 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5">
+                <div className="h-3 w-3 rounded-full bg-red-500/80" />
+                <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
+                <div className="h-3 w-3 rounded-full bg-green-500/80" />
+              </div>
+              <h3 className="font-semibold text-foreground text-sm">Generated Code</h3>
+            </div>
             {generatedCode && !isGenerating && (
               <div className="flex gap-2">
                 <Button
                   onClick={handleCopy}
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground hover:bg-primary/10"
                 >
                   {copied ? (
                     <Check className="h-4 w-4 mr-2" />
                   ) : (
                     <Copy className="h-4 w-4 mr-2" />
                   )}
-                  {copied ? 'Copied!' : 'Copy'}
+                  {copied ? 'Copied!' : 'Copy All'}
                 </Button>
                 <Button
                   onClick={handleDownload}
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground hover:bg-primary/10"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Download
@@ -188,7 +195,7 @@ export const CodeGenerator = ({ initialPrompt = "" }: CodeGeneratorProps) => {
             )}
           </div>
           
-          <div className="p-6">
+          <div className="p-0">
             <CodeDisplay code={generatedCode} isGenerating={isGenerating} />
           </div>
         </Card>
